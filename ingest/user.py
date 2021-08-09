@@ -1,13 +1,10 @@
-from creds import *
+from creds import headers
 import requests
 
 from dagster import pipeline, solid
 
 with open('.secrets/users-to-follow.csv') as f:
     users = [line.rstrip() for line in f]
-
-headers = {}
-headers["Authorization"] = f'Bearer {bearer_token()}'
 
 @solid
 def user_ingest(context):
@@ -16,7 +13,7 @@ def user_ingest(context):
         user_data = user_data + [
             requests.get(
                 f'https://api.twitter.com/2/users/{user}', 
-                headers=headers
+                headers=headers()
             ).text
         ]
     context.log.info(f"Found {len(user_data)} users")

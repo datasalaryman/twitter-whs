@@ -13,3 +13,8 @@ def api_secret():
 
 def bearer_token():
     return creds['bearer_token']
+
+def headers():
+    headers = {}
+    headers["Authorization"] = f'Bearer {bearer_token()}'
+    return headers
