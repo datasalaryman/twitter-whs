@@ -1,4 +1,4 @@
-from creds import headers
+from creds import api_url, headers
 import requests
 
 from dagster import pipeline, solid
@@ -12,7 +12,7 @@ def user_ingest(context):
     for user in users:
         user_data = user_data + [
             requests.get(
-                f'https://api.twitter.com/2/users/{user}', 
+                api_url() + f'users/{user}', 
                 headers=headers()
             ).text
         ]

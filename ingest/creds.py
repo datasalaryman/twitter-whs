@@ -5,6 +5,9 @@ import yaml
 with open(".secrets/twitter-creds.yml", "r") as stream:
     creds = (yaml.load(stream, Loader=yaml.FullLoader))
 
+def api_url():
+    return 'https://api.twitter.com/2/'
+
 def api_key():
     return creds['api_key']
 
