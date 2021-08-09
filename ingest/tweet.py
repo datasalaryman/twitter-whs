@@ -1,4 +1,4 @@
 from creds import *
 import requests
 
-tweet_url = 'https://api.twitter.com/1.1/users/lookup.json'
+tweet_url = 'https://api.twitter.com/2/users/:id/tweets'
