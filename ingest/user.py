@@ -1,4 +1,4 @@
-from creds import api_url, headers
+from ingest.creds import api_url, headers
 import requests
 
 from dagster import pipeline, solid
@@ -18,12 +18,3 @@ def user_ingest(context):
         ]
     context.log.info(f"Found {len(user_data)} users")
     return user_data
-
-@pipeline
-def user_pipeline():
-    user_ingest()
-
-from dagster import execute_pipeline
-
-if __name__ == "__main__":
-    result = execute_pipeline(user_pipeline)
